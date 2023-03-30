@@ -27,12 +27,8 @@
 
         <div class="mb-3">
           <label for="Description" class="form-label">Category description</label>
-          <input type="text"  
-          class="form-control" 
-          id="Description" 
-          name="Description" 
-          placeholder="..."
-          value="{{#if editMode}}{{category.description}}{{/if}}">
+          <textarea class="form-control" name="Description" 
+          id="Description" cols="30" rows="4">{{#if editMode}}{{category.description}}{{/if}}</textarea>
         </div>
 
         {{#if editMode}} 

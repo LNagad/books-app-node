@@ -1,8 +1,12 @@
 
 const Book = require('../models/Book');
-const Author = require('../models/Author')
-const Category = require('../models/Category')
-const Publisher = require('../models/Publisher')
+const Author = require('../models/Author');
+const Category = require('../models/Category');
+const Publisher = require('../models/Publisher');
+const transporter = require('../services/EmailService');
+const path = require('path');
+const fs = require('fs');
+
 
 exports.getBookPage = async (req, res) => {
 
@@ -28,24 +32,41 @@ exports.getCreate = async (req, res) => {
     });
 };
 
-exports.postCreate = (req, res) => {
-    const { body } = req;
-    const { Name, Date, Image, CategoryId, AuthorId, PublisherId} = body;
+exports.postCreate = async (req, res) => {
+    const { body, file } = req;
+    const { Name, Date, CategoryId, AuthorId, PublisherId} = body;
 
-    if (!Name || !Date || !Image || !CategoryId || !AuthorId || !PublisherId) {
+    if (!Name || !Date  || !CategoryId || !AuthorId || !PublisherId || !file) {
         return res.status(400).redirect('/book');
     }
-    
+    const imagePath = `/${file.path}`;
+
+    const author = await Author.findOne( {raw: true}, {where: {id: AuthorId}} );
+
     Book.create({
         title: Name, 
         yearReleased: Date, 
-        imagePath: Image,
+        imagePath,
         AuthorId,
         CategoryId,
         PublisherId
     }).then( () => {
 
-        return res.status(200).redirect('/book');
+        res.status(200).redirect('/book');
+
+        const emailHTML = `<h1 class="btn btn-danger">Libro: ${Name}</h1>`;
+        return transporter.sendMail(
+            {
+                subject: 'Se ha publicado un libro de tu auditoria!',
+                from: 'Books-app',
+                text: 'Un libro tuyo se ha publicado en la aplicacion Books-app',
+                to: author.email,
+                html: emailHTML
+            }, 
+            (err) => {
+                console.log('Email error: ',err);
+            });
+        
 
     }).catch(err => {
         console.log(err);
@@ -66,9 +87,6 @@ exports.getEdit = async(req, res) => {
     const publishers = await Publisher.findAll({ raw: true });
 
     Book.findOne({where: {id: Id}}).then(result => {
-        
-
-        console.log(result.dataValues);
 
         res.status(200).render('book/save', {
             pageName: 'Edit book',
@@ -83,21 +101,30 @@ exports.getEdit = async(req, res) => {
 };
 
 
-exports.postEdit = (req, res) => {
-    const { body } = req;
-    const { Name, Date, Image, CategoryId, AuthorId, PublisherId, bookId} = body;
-    
+exports.postEdit = async (req, res) => {
+    const { body, file } = req;
+    const { Name, Date, CategoryId, AuthorId, PublisherId, bookId} = body;
+    const bookImage = file;
+
     !bookId ?  res.redirect('/book') : '';
 
-    if (!Name || !Date || !Image || !CategoryId || !AuthorId || !PublisherId) {
+    if (!Name || !Date  || !CategoryId || !AuthorId || !PublisherId) {
         return res.status(400).redirect('/book');
     }
     
+    const bookExist = await Book.findOne({raw: true}, {where: {id: bookId}});
+
+    if (!bookExist) {
+        return res.status(400).redirect('/book');
+    }
+
+    const imagePath = bookImage ? `/${bookImage.path}` : bookExist.imagePath; 
+
     Book.update(
         {
             title: Name, 
             yearReleased: Date, 
-            imagePath: Image,
+            imagePath,
             AuthorId,
             CategoryId,
             PublisherId
@@ -123,12 +150,25 @@ exports.Delete = (req, res) => {
         return res.status(500).redirect('/book');
     }
 
+    
     Book.findOne({where: {id: Id}}).then(result => {
-
+        
         const bookFound = result.dataValues;
+        
+        //Delete books path
+        const imagePath = path.join(path.dirname(require.main.filename), bookFound.imagePath);
 
         Book.destroy({where: {id: bookFound.id}}).then( () =>{
             res.status(200).redirect('/book');
+
+            //Delete book
+            return fs.unlink(imagePath, (error) => {
+                if (error) {
+                    console.error(error);
+                }
+                
+            });
+            
         });
 
     }).catch(err => {

@@ -10,7 +10,7 @@
       </p>
     </div>
     <div class="card-body">
-      <form method="post" action="{{#if editMode}}/edit-book{{else}}/create-book{{/if}}">
+      <form enctype="multipart/form-data" method="post" action="{{#if editMode}}/edit-book{{else}}/create-book{{/if}}">
         <div class="mb-3">
           <label for="Name" class="form-label">Book title</label>
           <input type="text" class="form-control" id="Name" name="Name" placeholder="Paulo Coelho"
@@ -25,7 +25,9 @@
 
         <div class="mb-3">
           <label for="Email" class="form-label">Book Image</label>
-          <input type="text" class="form-control" id="Image" name="Image" placeholder=""
+          <input  {{#if editMode}}""{{else}}required{{/if}} 
+            type="file"class="form-control" id="Image" name="Image" 
+            placeholder=""
             value="{{#if editMode}}{{book.imagePath}}{{/if}}">
         </div>
 

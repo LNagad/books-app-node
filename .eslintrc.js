@@ -29,10 +29,10 @@ module.exports = {
             'always'
         ]
     },
-    globals: {
-        $: "readonly",
-    },
-    plugins: ["jquery"],
-    extends: ["plugin:jquery/recommended"],
+    // globals: {
+    //     $: "readonly",
+    // },
+    // plugins: ["jquery"],
+    // extends: ["plugin:jquery/recommended"],
       
 };
