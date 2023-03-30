@@ -1,0 +1,24 @@
+<div class="d-flex w-100  justify-content-between">
+    <h3>Books Page</h3>
+    <a class="float-end btn btn-outline-success" href="/create-book">Create book</a>
+</div>
+
+<div>
+    <div class="d-flex mt-5 w-100">
+        {{#if hasBook}}
+        {{#each books as |p| }}
+        <div class="card me-2 col-3">
+            <div class="card-body">
+                <h6 class="card-title mb-3">{{p.title}}</h6>
+                <a class="btn btn-outline-primary" href="/edit-book/{{p.id}}?edit=true">Edit
+                </a>
+                <a class="delete-book btn btn-outline-danger" href="/delete-book/{{p.id}}">Delete
+                </a>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <h1>No books found!</h1>
+        {{/if}}
+    </div>
+</div>

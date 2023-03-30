@@ -1,4 +1,3 @@
-
 $(function() {
 
     $('.delete-category').on('click', function(e) {   
@@ -19,6 +18,11 @@ $(function() {
         deleteSmh(link);
     });
 
+    $('.delete-book').on('click', function(e) {   
+        e.preventDefault();
+        const link = $(this).attr('href');
+        deleteSmh(link);
+    });
 
     function deleteSmh(link) {
 
@@ -48,7 +52,6 @@ $(function() {
                 }).fail((xhr, status, error) => console.error('Hubo un error al borrar: ', error));
             }
         });
-    
     }
 });
  

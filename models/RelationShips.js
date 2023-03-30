@@ -4,18 +4,14 @@ const Author = require('./Author');
 const Category = require('./Category');
 
 
-const RelationShips = () => {
-    
-    Book.belongsTo(Author, {constraints: true, onDelete: 'CASCADE'});
-    Book.belongsTo(Category, {constraints: true, onDelete: 'CASCADE'});
-    Book.belongsTo(Publisher, {constraints: true, onDelete: 'CASCADE'});
 
-    Author.hasMany(Book, {constraints: true, onDelete: 'CASCADE'});
-    Category.hasMany(Book, {constraints: true, onDelete: 'CASCADE'});
-    Publisher.hasMany(Book, {constraints: true, onDelete: 'CASCADE'});
+Book.belongsTo(Author, {constraints: false, foreignKey: 'AuthorId',  onDelete: 'CASCADE'});
+Book.belongsTo(Category, {constraints: false, foreignKey: 'CategoryId',  onDelete: 'CASCADE'});
+Book.belongsTo(Publisher, {constraints: false, foreignKey: 'PublisherId',  onDelete: 'CASCADE'});
 
-};
+Author.hasMany(Book, {constraints: false, foreignKey: 'AuthorId',  onDelete: 'CASCADE'});
+Category.hasMany(Book, {constraints: false, foreignKey: 'CategoryId',  onDelete: 'CASCADE'});
+Publisher.hasMany(Book, {constraints: false, foreignKey: 'PublisherId',  onDelete: 'CASCADE'});
 
 
-
-module.exports = RelationShips;
+module.exports = { Book, Publisher, Author, Category };
