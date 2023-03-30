@@ -7,6 +7,8 @@ const relationShip = require('./models/RelationShips');
 
 const homeRoute = require('./routes/homeRoute');
 const categoryRoute = require('./routes/categoryRoute');
+const publisherRoute = require('./routes/publisherRoute');
+const auhorRoute = require('./routes/authorRoute');
 
 const errorController = require('./controllers/ErrorController');
 
@@ -31,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(homeRoute);
 app.use(categoryRoute);
+app.use(publisherRoute);
+app.use(auhorRoute);
 
 app.use(errorController.get404);
 

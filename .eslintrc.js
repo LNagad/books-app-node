@@ -28,5 +28,11 @@ module.exports = {
             'error',
             'always'
         ]
-    }
+    },
+    globals: {
+        $: "readonly",
+    },
+    plugins: ["jquery"],
+    extends: ["plugin:jquery/recommended"],
+      
 };
