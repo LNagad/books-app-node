@@ -30,8 +30,10 @@
         <img class="card-img-top img-responsive" src="{{p.imagePath}}" alt="">
       </div>
       <div class="card-body">
-        <h6 class="card-title mb-3">Title: {{p.title}}</h6>
-        <h6 class="card-title mb-3">Year released: {{p.yearReleased}}</h6>
+        <h6 class="card-title mb-3"><span class="fw-bold"> Title: </span>{{p.title}}</h6>
+        <h6 class="card-title mb-3"><span class="fw-bold">Year released:</span>  {{p.yearReleased}}</h6>
+        <h6 class="card-title mb-3"><span class="fw-bold">Publisher: </span> {{p.publisher}}</h6>
+        <h6 class="card-title mb-3"><span class="fw-bold">Author:</span>  {{p.author}}</h6>
       </div>
     </div>
     {{/each}}
