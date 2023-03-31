@@ -41,7 +41,7 @@ exports.postCreate = async (req, res) => {
     }
     const imagePath = `/${file.path}`;
 
-    const author = await Author.findOne( {raw: true}, {where: {id: AuthorId}} );
+    const author = await Author.findOne( {raw: true, where: {id: AuthorId}} );
 
     Book.create({
         title: Name, 
@@ -67,7 +67,6 @@ exports.postCreate = async (req, res) => {
                 console.log('Email error: ',err);
             });
         
-
     }).catch(err => {
         console.log(err);
         return res.status(500).redirect('/book');
@@ -112,7 +111,7 @@ exports.postEdit = async (req, res) => {
         return res.status(400).redirect('/book');
     }
     
-    const bookExist = await Book.findOne({raw: true}, {where: {id: bookId}});
+    const bookExist = await Book.findOne({raw: true, where: {id: bookId}});
 
     if (!bookExist) {
         return res.status(400).redirect('/book');
@@ -155,7 +154,7 @@ exports.Delete = (req, res) => {
         
         const bookFound = result.dataValues;
         
-        //Delete books path
+        //Delete books file and row from db
         const imagePath = path.join(path.dirname(require.main.filename), bookFound.imagePath);
 
         Book.destroy({where: {id: bookFound.id}}).then( () =>{
@@ -166,7 +165,6 @@ exports.Delete = (req, res) => {
                 if (error) {
                     console.error(error);
                 }
-                
             });
             
         });

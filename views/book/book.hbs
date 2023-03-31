@@ -12,7 +12,8 @@
                 <img class="card-img-top img-responsive" src="{{p.imagePath}}" alt="">
             </div>
             <div class="card-body">
-                <h6 class="card-title mb-3">{{p.title}}</h6>
+                <h6 class="card-title mb-3">Title: {{p.title}}</h6>
+                <h6 class="card-title mb-3">Year released: {{p.yearReleased}}</h6>
                 <a class="btn btn-outline-primary" href="/edit-book/{{p.id}}?edit=true">Edit
                 </a>
                 <a class="delete-book btn btn-outline-danger" href="/delete-book/{{p.id}}">Delete
