@@ -1,49 +1,51 @@
-<div class="col-lg-6 offset-lg-3">
-  <div class="card shadow-sm p-3 mb-5  rounded">
-    <div class="card-header ">
-      <p class="text-center mb-0 fw-bold"
-      >
-      {{#if editMode}}
-        Editing <span class="text-warning">{{category.name}}</span> 
-      {{else}}
-        Create new category
-      {{/if}}
-      </p>
-    </div>
-    <div class="card-body">
-      <form 
-        method="post" 
-        action="{{#if editMode}}/edit-category{{else}}/create-category{{/if}}"
-      >
-        <div class="mb-3">
-          <label for="Name" class="form-label">Category name</label>
-          <input type="text"  
-          class="form-control" 
-          id="Name" 
-          name="Name" 
-          placeholder="Action"
-          value="{{#if editMode}}{{category.name}}{{/if}}">
-        </div>
-
-        <div class="mb-3">
-          <label for="Description" class="form-label">Category description</label>
-          <textarea class="form-control" name="Description" 
-          id="Description" cols="30" rows="4">{{#if editMode}}{{category.description}}{{/if}}</textarea>
-        </div>
-
-        {{#if editMode}} 
-          <input type="hidden"
-          name="CategoryId"
-          value="{{#if editMode}}{{category.id}}{{/if}}">
+<section class="container">
+  <div class="col-lg-6 offset-lg-3">
+    <div class="card shadow-sm p-3 mb-5  rounded">
+      <div class="card-header ">
+        <p class="text-center mb-0 fw-bold"
+        >
+        {{#if editMode}}
+          Editing <span class="text-warning">{{category.name}}</span> 
+        {{else}}
+          Create new category
         {{/if}}
-        
-        <div class="d-flex justify-content-between mt-4">  
-          <a href="/category" class="btn btn-secondary float-end">Cancel</a>
-          <button type="submit" class="btn btn-success  float-end">
-            {{#if editMode}}Update{{else}}Save{{/if}}
-          </button>
-        </div>
-      </form>
+        </p>
+      </div>
+      <div class="card-body">
+        <form 
+          method="post" 
+          action="{{#if editMode}}/edit-category{{else}}/create-category{{/if}}"
+        >
+          <div class="mb-3">
+            <label for="Name" class="form-label">Category name</label>
+            <input type="text"  
+            class="form-control" 
+            id="Name" 
+            name="Name" 
+            placeholder="Action"
+            value="{{#if editMode}}{{category.name}}{{/if}}">
+          </div>
+  
+          <div class="mb-3">
+            <label for="Description" class="form-label">Category description</label>
+            <textarea class="form-control" name="Description" 
+            id="Description" cols="30" rows="4">{{#if editMode}}{{category.description}}{{/if}}</textarea>
+          </div>
+  
+          {{#if editMode}} 
+            <input type="hidden"
+            name="CategoryId"
+            value="{{#if editMode}}{{category.id}}{{/if}}">
+          {{/if}}
+          
+          <div class="d-flex justify-content-between mt-4">  
+            <a href="/category" class="btn btn-secondary float-end">Cancel</a>
+            <button type="submit" class="btn btn-success  float-end">
+              {{#if editMode}}Update{{else}}Save{{/if}}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</section>

@@ -6,8 +6,163 @@
     color: #e3f2fd;
 }
 
-.img-responsive {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
+body {
+    background-color: #f8f3ed;
 }
+
+header {
+    padding: 1rem 2rem;
+}
+
+/* ------ header ------ */
+
+header > nav {
+    height: 100%;
+}
+
+.wActive {
+    background-color: #DAAA63;
+}
+
+.navbar-brand{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.navbar-nav .nav-link {
+    width: 9rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.navbar-nav .nav-link:hover{
+    background-color: #DAAA63;
+}
+
+.primaryColor {
+    color: #2C1810; 
+}
+
+.homeText {
+    font-size: 65px;
+    font-family: 'Libre Caslon Text', serif;
+    font-weight: 400;
+}
+.homeText-p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: rgb(153,159,169);
+}
+
+.search-btn {
+    border: none;
+    background-color: #fff;
+    border-radius: 20px 0px 0px 20px;
+    padding: 10px 15px 10px 20px;
+    color: rgb(153,159,169);
+}
+
+.search-btn >i {
+    color: rgb(153,159,169);
+}
+
+.search-btn:hover >i {
+    color: #2C1810; 
+}
+
+.search-input{
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 0px 20px 20px 0px;
+    padding: 10px 0px;
+}
+
+.search-input:focus{
+    outline: none;
+}
+
+/* -------------- book container */
+
+.book-container{
+    height: 28rem;
+    box-sizing: border-box;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.book-container > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.top-books {
+    padding: 0 5rem;
+}
+
+/* bottom books */
+
+.bottom-books {
+    background-color: rgba(255,255,255,255);
+    padding: 3rem 5rem;
+    border-radius: 2rem 2rem;
+}
+
+.bottom-books .card {
+    border: none;
+}
+
+.bottom-card-title{
+    color: #2C1810;
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 500;
+}
+
+.bottom-card-p {
+    color: rgb(153,159,169);
+    font-family: 'Montserrat', sans-serif; 
+}
+
+.card-image-header {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    border-radius: 5px;
+}
+
+.img-responsive {
+    border-radius: 5px;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+}
+.best-seller-container {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 0;
+}
+
+.best-seller-p {
+    width: 200px;
+    padding: 0;
+    margin-top: 3rem;
+    transform: rotate(-90deg);
+    color: #2C1810;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+/* font-family: 'Libre Caslon Text', serif;
+font-family: 'Montserrat', sans-serif; */
+
+/* #DAAA63
+#2C1810 */

@@ -15,7 +15,8 @@ exports.getBookPage = async (req, res) => {
     res.status(200).render('book/book', {
         pageName: 'book',
         books,
-        hasBook: books.length > 0
+        hasBook: books.length > 0,
+        booksActive: true,
     });
 };
 
@@ -28,7 +29,8 @@ exports.getCreate = async (req, res) => {
     res.status(200).render('book/save', {
         pageName: 'Create book',
         editMode: false,
-        authors, categories, publishers
+        authors, categories, publishers,
+        booksActive: true,
     });
 };
 
@@ -91,7 +93,8 @@ exports.getEdit = async(req, res) => {
             pageName: 'Edit book',
             editMode: true,
             book: result.dataValues,
-            authors, categories, publishers
+            authors, categories, publishers,
+            booksActive: true,
         });
     }).catch(err => {
         console.log(err);

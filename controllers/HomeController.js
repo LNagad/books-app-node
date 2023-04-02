@@ -26,7 +26,8 @@ exports.getHome = async (req, res) => {
         pageName: 'Home',
         books: list,
         hasBook: list.length > 0,
-        categories
+        categories,
+        homeActive: true
     });
     
 };
@@ -60,7 +61,8 @@ exports.bookFind = async (req, res) => {
         pageName: 'Home',
         books: list,
         hasBook: list.length > 0,
-        categories
+        categories,
+        homeActive: true
     });
 
 };
@@ -121,6 +123,7 @@ exports.filterBooks = async (req, res) => {
         pageName: 'Home',
         books: bookList,
         hasBook: bookList.length > 0,
-        categories
+        categories,
+        homeActive: true
     });
 };

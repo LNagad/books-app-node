@@ -1,95 +1,97 @@
-<div class="col-lg-6 offset-lg-3">
-  <div class="card shadow-sm p-3 mb-5  rounded">
-    <div class="card-header ">
-      <p class="text-center mb-0 fw-bold">
-      {{#if editMode}}
-      Editing <span class="text-warning">{{book.title}}</span>
-      {{else}}
-      Create new book
-      {{/if}}
-      </p>
-    </div>
-    <div class="card-body">
-      <form enctype="multipart/form-data" method="post" action="{{#if editMode}}/edit-book{{else}}/create-book{{/if}}">
-        <div class="mb-3">
-          <label for="Name" class="form-label">Book title</label>
-          <input type="text" class="form-control" id="Name" name="Name" placeholder="Paulo Coelho"
-            value="{{#if editMode}}{{book.title}}{{/if}}">
-        </div>
-
-        <div class="mb-3">
-          <label for="Date" class="form-label">Date</label>
-          <input type="date" class="form-control" id="Date" name="Date" placeholder=""
-            value="{{#if editMode}}{{book.yearReleased}}{{/if}}">
-        </div>
-
-        <div class="mb-3">
-          <label for="Email" class="form-label">Book Image</label>
-          <input  {{#if editMode}}""{{else}}required{{/if}} 
-            type="file"class="form-control" id="Image" name="Image" 
-            placeholder=""
-            value="{{#if editMode}}{{book.imagePath}}{{/if}}">
-        </div>
-
-        <div class="mb-3">
-          <label for="Category" class="form-label">Book Category</label>
-          <select class="form-select" name="CategoryId" id="Category">
-            <option value="">Select a category</option>
-            {{#each categories as |c| }}
-
-              {{#if (compareSelectedValue c.id ../book.CategoryId)}}
-                <option selected value="{{c.id}}">{{c.name}}</option>
-              {{else}}
-                <option value="{{c.id}}">{{c.name}}</option>
-              {{/if}}
-
-            {{/each}}
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="Author" class="form-label">Book Author</label>
-          <select class="form-select" name="AuthorId" id="Author">
-            <option value="">Select an author</option>
-              {{#each authors as |c| }}
-
-                {{#if (compareSelectedValue c.id ../book.AuthorId)}}
-                  <option selected value="{{c.id}}">{{c.name}}</option>
-                {{else}}
-                  <option value="{{c.id}}">{{c.name}}</option>
-                {{/if}}
-              
-              {{/each}}
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="Publisher" class="form-label">Book Publisher</label>
-          <select class="form-select" name="PublisherId" id="Publisher">
-            <option value="">Select a publisher</option>
-              {{#each publishers as |c| }}
-
-                {{#if (compareSelectedValue c.id ../book.PublisherId)}}
-                  <option selected value="{{c.id}}">{{c.name}}</option>
-                {{else}}
-                  <option value="{{c.id}}">{{c.name}}</option>
-                {{/if}}
-
-              {{/each}}
-          </select>
-        </div>
-
+<section class="container">
+  <div class="col-lg-6 offset-lg-3">
+    <div class="card shadow-sm p-3 mb-5  rounded">
+      <div class="card-header ">
+        <p class="text-center mb-0 fw-bold">
         {{#if editMode}}
-        <input type="hidden" name="bookId" value="{{#if editMode}}{{book.id}}{{/if}}">
+        Editing <span class="text-warning">{{book.title}}</span>
+        {{else}}
+        Create new book
         {{/if}}
-
-        <div class="d-flex justify-content-between mt-4">
-          <a href="/book" class="btn btn-secondary float-end">Cancel</a>
-          <button type="submit" class="btn btn-success  float-end">
-            {{#if editMode}}Update{{else}}Save{{/if}}
-          </button>
-        </div>
-      </form>
+        </p>
+      </div>
+      <div class="card-body">
+        <form enctype="multipart/form-data" method="post" action="{{#if editMode}}/edit-book{{else}}/create-book{{/if}}">
+          <div class="mb-3">
+            <label for="Name" class="form-label">Book title</label>
+            <input type="text" class="form-control" id="Name" name="Name" placeholder="Paulo Coelho"
+              value="{{#if editMode}}{{book.title}}{{/if}}">
+          </div>
+  
+          <div class="mb-3">
+            <label for="Date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="Date" name="Date" placeholder=""
+              value="{{#if editMode}}{{book.yearReleased}}{{/if}}">
+          </div>
+  
+          <div class="mb-3">
+            <label for="Email" class="form-label">Book Image</label>
+            <input  {{#if editMode}}""{{else}}required{{/if}} 
+              type="file"class="form-control" id="Image" name="Image" 
+              placeholder=""
+              value="{{#if editMode}}{{book.imagePath}}{{/if}}">
+          </div>
+  
+          <div class="mb-3">
+            <label for="Category" class="form-label">Book Category</label>
+            <select class="form-select" name="CategoryId" id="Category">
+              <option value="">Select a category</option>
+              {{#each categories as |c| }}
+  
+                {{#if (compareSelectedValue c.id ../book.CategoryId)}}
+                  <option selected value="{{c.id}}">{{c.name}}</option>
+                {{else}}
+                  <option value="{{c.id}}">{{c.name}}</option>
+                {{/if}}
+  
+              {{/each}}
+            </select>
+          </div>
+  
+          <div class="mb-3">
+            <label for="Author" class="form-label">Book Author</label>
+            <select class="form-select" name="AuthorId" id="Author">
+              <option value="">Select an author</option>
+                {{#each authors as |c| }}
+  
+                  {{#if (compareSelectedValue c.id ../book.AuthorId)}}
+                    <option selected value="{{c.id}}">{{c.name}}</option>
+                  {{else}}
+                    <option value="{{c.id}}">{{c.name}}</option>
+                  {{/if}}
+                
+                {{/each}}
+            </select>
+          </div>
+  
+          <div class="mb-3">
+            <label for="Publisher" class="form-label">Book Publisher</label>
+            <select class="form-select" name="PublisherId" id="Publisher">
+              <option value="">Select a publisher</option>
+                {{#each publishers as |c| }}
+  
+                  {{#if (compareSelectedValue c.id ../book.PublisherId)}}
+                    <option selected value="{{c.id}}">{{c.name}}</option>
+                  {{else}}
+                    <option value="{{c.id}}">{{c.name}}</option>
+                  {{/if}}
+  
+                {{/each}}
+            </select>
+          </div>
+  
+          {{#if editMode}}
+          <input type="hidden" name="bookId" value="{{#if editMode}}{{book.id}}{{/if}}">
+          {{/if}}
+  
+          <div class="d-flex justify-content-between mt-4">
+            <a href="/book" class="btn btn-secondary float-end">Cancel</a>
+            <button type="submit" class="btn btn-success  float-end">
+              {{#if editMode}}Update{{else}}Save{{/if}}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</section>
