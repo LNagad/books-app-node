@@ -1,1 +1,2 @@
 # books-app-node
+Utilicé Express para construir la base de la aplicación web, Handlebars para generar plantillas HTML personalizadas y Sequelize como ORM para interactuar con la base de datos. También utilicé Multer para la gestión de archivos multimedia, Express-session para gestionar las sesiones de usuario, Connect-flash para enviar mensajes entre páginas y CORS para permitir el acceso a la API desde diferentes orígenes.
